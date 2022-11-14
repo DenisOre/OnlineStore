@@ -1,0 +1,128 @@
+﻿
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/CatalogStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/CardOfProductStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/BasketStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/AdministratorStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/AdministratorProductsStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ContactsStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OnlineStore.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="header">
+        <div>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "OnlyForAdmin")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "OnlyForRegisteredUser")).Succeeded)
+            {
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" asp-action="Account" asp-controller="Account">@User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" asp-action="Exit" asp-controller="EnterOrRegistration">Выйти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" href="/Basket/Basket">Корзина</a>
+                    </li>
+                </ul>
+            }
+            else if((await AuthorizationService.AuthorizeAsync(User, "OnlyForManager")).Succeeded)
+            {
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" asp-action="Manager" asp-controller="Manager">@User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" asp-action="Exit" asp-controller="EnterOrRegistration">Выйти</a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" href="/EnterOrRegistration/Enter">Вход / Регистрация</a>
+                    </li>
+                </ul>
+            }
+        </div>
+
+        <div class="nav">
+            <a class="nav-link header__name-store" asp-action="Index" asp-controller="Home">OnlineStore</a>
+        </div>
+
+        <div>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "OnlyForAdmin")).Succeeded)
+            {
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" href="/Administrator/AdministratorMain">Администратор</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" asp-action="Manager" asp-controller="Manager">Менеджер</a>
+                    </li>
+                </ul>
+            }
+            @if ((await AuthorizationService.AuthorizeAsync(User, "OnlyForManager")).Succeeded)
+            {
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link header__nav-item" asp-action="Manager" asp-controller="Manager">Менеджер</a>
+                    </li>
+                </ul>
+            }
+        </div>
+
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        @await Component.InvokeAsync("Catalog")
+                    </div>
+                    <div class="col-6">
+                        @await Component.InvokeAsync("Search")
+                    </div>
+                </div>
+            </div>
+        
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+       <div>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link footer__nav-item" href="/Footer/Payment">Оплата</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link footer__nav-item" href="/Footer/PointOfIssue">Пункт выдачи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link footer__nav-item" href="/Footer/Contacts">Контакты</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

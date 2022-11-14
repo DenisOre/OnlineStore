@@ -1,0 +1,54 @@
+﻿@model OnlineStore.Models.ProductAddViewModel
+@{
+    ViewData["Title"] = "Добавление товара";
+    Layout = "/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<form enctype="multipart/form-data" method="post" class="mt-3 col-4 container justify-content-center enter__form">
+    <p class="h3 text-center">Добавление товара</p>
+    <div class="mb-3">
+        <label for="Name" class="form-label">Наименование</label>
+        <input type="text" class="form-control" required id="Name" name="Name" placeholder="Введите название товара">
+        <p class="ErrorMessage">@ViewBag.ErrorName</p>
+    </div>
+    <div class="mb-3">
+        <label for="Price" class="form-label">Цена</label>
+        <input type="number" class="form-control" required id="Price" name="Price" placeholder="Введите цену товара">
+    </div>
+    <div class="mb-3">
+        <label for="PriceSale" class="form-label">Цена по акции</label>
+        <input type="number" class="form-control" required id="PriceSale" name="PriceSale" placeholder="Введите цену по акции">
+    </div>
+    <div class="mb-3">
+        <label for="category" class="form-label">Категория</label>
+        <select class="form-select" required id="category" name="category">
+            <option selected disabled>Выберите категорию товара</option>
+            @for(int i = 0; i < Model.categories.Count; i++)
+            {
+                <option value="@Model.categories[i].Name">@Model.categories[i].Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="manufacturer" class="form-label">Производитель</label>
+        <select class="form-select" required id="manufacturer" name="manufacturer">
+            <option selected disabled>Выберите производителя</option>
+            @for(int i = 0; i < Model.manufacturers.Count; i++)
+            {
+                <option value="@Model.manufacturers[i].Name">@Model.manufacturers[i].Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="InfoAboutProduct" class="form-label">Описание товара</label>
+        <textarea class="form-control" id="InfoAboutProduct" required name="InfoAboutProduct" placeholder="Введите описание товара"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="imagesOfProduct" class="form-label">Изображения товара</label>
+        <input type="file" multiple class="form-control" id="imagesOfProduct" name="imagesOfProduct">
+    </div>
+    <div class="d-flex justify-content-center">
+       <input type="submit" class="btn btn-success mb-3 col-4" value="Сохранить"/>
+       <input type="button" class="btn btn-danger ms-2 mb-3 col-4" value="Отмена" onclick="location.href = '@Url.Action("AdministratorProducts","AdministratorProducts")';"/>
+    </div>
+</form>

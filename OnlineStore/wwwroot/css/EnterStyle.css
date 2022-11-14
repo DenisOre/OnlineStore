@@ -1,0 +1,17 @@
+﻿.enter__form {
+    border: 2px solid #8364AD;
+    border-radius: 5px;
+    background-color: #8364AD;
+    color: white;
+}
+.enter__btn {
+    color: #8364AD !important;
+    font-weight: bold;
+    background-color: white;
+}
+
+    .enter__btn:hover {
+        color: white !important;
+        background-color: #8364AD;
+        border: 2px solid white;
+    }

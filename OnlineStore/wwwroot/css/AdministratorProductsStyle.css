@@ -1,0 +1,11 @@
+﻿td {
+    text-align:center;
+}
+.adminProducts__header {
+    color:white;
+    background-color: #8364AD;
+}
+.adminProducts__header-col {
+    border: 2px solid white;
+    text-align:center;
+}

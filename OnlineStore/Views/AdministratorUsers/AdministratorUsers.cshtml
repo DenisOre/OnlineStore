@@ -1,0 +1,72 @@
+﻿@model OnlineStore.Models.UserViewModel
+@{
+    ViewData["Title"] = "Пользователи";
+}
+
+
+<form asp-action="administratorDeleteUsers" asp-controller="administratorUsers" method="post">
+<div class="mt-5">
+  <div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="btn btn-outline-success" href="/AdministratorUsers/AdministratorAddUser">Добавить</a>
+      </li>
+      <li class="nav-item">
+        <input type="submit" class="btn btn-outline-danger ms-2" value="Удалить" />
+      </li>
+    </ul>
+   </div>
+    
+</div>
+<table class="table table-hover align-middle mt-4 adminProducts">
+  <thead class="align-middle adminProducts__header">
+    <tr>
+      <th class="adminProducts__header-col" scope="col">Id</th>
+      <th class="adminProducts__header-col" scope="col">Имя</th>
+      <th class="adminProducts__header-col" scope="col">Фамилия</th>
+      <th class="adminProducts__header-col" scope="col">Email</th>
+      <th class="adminProducts__header-col" scope="col">Телефон</th>
+      <th class="adminProducts__header-col" scope="col">Статус</th>
+      <th class="adminProducts__header-col" scope="col">Редактировать</th>
+      <th class="adminProducts__header-col" scope="col">Удалить</th>
+    </tr>
+  </thead>
+  <tbody>
+      @for(int i = 0; i < Model.userIsSelect.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x=>x.userIsSelect[i].Id)
+                    @Model.userIsSelect[i].Id
+                </td>
+                <td>
+                    @Html.HiddenFor(x=>x.userIsSelect[i].Name)
+                    @Model.userIsSelect[i].Name
+                </td>
+                <td>
+                    @Html.HiddenFor(x=>x.userIsSelect[i].Surname)
+                    @Model.userIsSelect[i].Surname
+                </td>
+                <td>
+                    @Html.HiddenFor(x=>x.userIsSelect[i].Email)
+                    @Model.userIsSelect[i].Email
+                </td>
+                <td>
+                    @Html.HiddenFor(x=>x.userIsSelect[i].Phone)
+                    @Model.userIsSelect[i].Phone
+                </td>
+                <td>
+                    @Html.HiddenFor(x=>x.userIsSelect[i].Role.Name)
+                    @Model.userIsSelect[i].Role.Name
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-action="AdministratorOpenEditUser" asp-controller="AdministratorUsers" asp-route-id="@Model.userIsSelect[i].Id">Изменить</a>
+                </td>
+                <td>
+                    @Html.CheckBoxFor(x=>x.userIsSelect[i].IsSelected)
+                </td>
+            </tr>
+        }
+  </tbody>
+</table>
+</form>

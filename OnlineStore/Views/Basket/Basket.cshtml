@@ -1,0 +1,67 @@
+﻿
+@model OnlineStore.Models.Order
+@{
+   ViewData["Title"] = "Корзина";
+}
+
+
+<table class="table table-hover align-middle mt-4 basketTable">
+  <thead class="basketTable__header">
+    <tr>
+      <th class="col-1 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
+      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="col-2 basketTable__header-col" scope="col">Количество</th>
+      <th class="basketTable__header-col" scope="col">Сумма</th>
+      <th class="basketTable__header-col" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      @for(int i=0; i < @Model.products.Count; i++)
+      {
+            <tr>
+                <td>
+                    @(i+1)
+                </td>
+                <td>@Model.products[i].Product.Name</td>
+                <td>@Model.products[i].buyPrice р.</td>
+              <td>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col ">
+                              <form asp-controller="Basket" asp-action="DecreaseCountOfProduct" asp-route-id="@Model.products[i].Id" method="post" >
+                                   <input type="submit" min="0" value="-" class="btn btn-sm btn-danger" />
+                              </form>
+                          </div>
+                          <div class="col-1 align-self-center">
+                              @Model.products[i].Count
+                          </div>
+                          <div class="col ">
+                              <form asp-controller="Basket" asp-action="IncreaseCountOfProduct" asp-route-id="@Model.products[i].Id" method="post" >
+                                   <input type="submit" min="0" value="+" class="btn btn btn-sm btn-success" />
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </td> 
+              <td>@Model.products[i].buySum р.</td>
+              <td>
+                  <form asp-action="DeleteBuyFromOrder" asp-controller="Basket" method="post" asp-route-id="@Model.products[i].Id">
+                      <input type="submit" class="btn btn-outline-secondary" value="Удалить из корзины" />
+                  </form>
+                  
+              </td>
+          </tr>
+      }
+  </tbody>
+  <tfoot>
+      <tr>
+          <td colspan="4" class="basketTable__footer-total">Сумма заказа:</td>
+          <td class="basketTable__footer-totalSum">@Model.SumOfOrder р.</td>
+      </tr>
+  </tfoot>
+</table>
+<form asp-action="RegisterOrder" asp-controller="Basket" method="post" asp-route-id="@Model.Id" >
+    <input type="submit" class="offset-9 basketBtn" value="Оформить заказ" />
+</form>
+

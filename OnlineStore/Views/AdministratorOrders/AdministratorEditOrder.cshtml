@@ -1,0 +1,48 @@
+﻿
+@model OnlineStore.Models.Order
+@{
+    ViewData["Title"] = "Создание заказа";
+    Layout = "/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<form asp-action="administratorEditOrder" asp-controller="administratorOrders" method="post" asp-route-id="@Model.Id" class="mt-3 col-4 container justify-content-center enter__form">
+    <p class="h3 text-center">Редактирование заказа</p>
+    <div class="mb-3">
+        <label for="Id" class="form-label">Id</label>
+        <input type="text" class="form-control" disabled id="Id" name="Id" value="@Model.Id">
+    </div>
+    <div class="mb-3">
+        <label for="isReady" class="form-label">Готовность заказа</label>
+        <select class="form-select" required id="isReady" name="isReady">             
+            @if (Model.isReady == true)
+            {
+                <option selected value="@true">Готов к выдаче</option>
+                <option value="@false">В обработке</option>
+            }
+            else
+            {
+                <option selected value="@false">В обработке</option>
+                <option value="@true">Готов к выдаче</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="isPaid" class="form-label">Статус оплаты</label>
+        <select class="form-select" required id="isPaid" name="isPaid">             
+            @if (Model.isPaid == true)
+            {
+                <option selected value="@true">Оплачен</option>
+                <option value="@false">Ожидает оплаты</option>
+            }
+            else
+            {
+                <option selected value="@false">Ожидает оплаты</option>
+                <option value="@true">Оплачен</option>
+            }
+        </select>
+    </div>
+    <div class="d-flex justify-content-center">
+       <input type="submit" class="btn btn-success mb-3 col-4" value="Сохранить"/>
+       <input type="button" class="btn btn-danger ms-2 mb-3 col-4" value="Отмена" onclick="location.href = '@Url.Action("AdministratorOrders","AdministratorOrders")';"/>
+    </div>
+</form>

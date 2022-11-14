@@ -1,0 +1,25 @@
+﻿.adminMain {
+    height: 200px;
+   
+}
+.adminMain__section {
+    font-size:140%;
+    color: #8364AD;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #8364AD;
+    border-radius: 10px;
+    padding-top:40%;
+}
+
+    .adminMain__section:hover {
+        transform: translate3d(-5px,-5px,5px);
+        box-shadow: 5px 5px 15px #8364AD;
+    }
+
+.adminMain__nav-item {
+    color: #8364AD;
+    text-decoration: none;
+}
+
+

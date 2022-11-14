@@ -1,0 +1,13 @@
+﻿@model List<OnlineStore.Models.Category>
+
+<div class="dropdown">
+    <button class="btn dropdown-toggle col-9 header__btn-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Каталог товаров
+    </button>
+    <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <li><a class="dropdown-item header__dropdown-item" asp-action="CatalogSelectCategory" asp-controller="Catalog" asp-route-id="@Model[i].Id">@Model[i].Name</a></li>
+        }
+    </ul>
+</div>

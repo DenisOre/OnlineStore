@@ -1,0 +1,54 @@
+﻿
+
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<form asp-action="Registration" asp-controller="EnterOrRegistration" method="post" class="mt-3 col-4 container justify-content-center enter__form">
+    <p class="h3 text-center">Регистрация</p>
+    <div class="mb-3">
+        <label for="Name" class="form-label">Имя</label>
+        <input type="text" class="form-control" id="Name" name="Name" placeholder="Введите имя">
+    </div>
+    <div class="mb-3">
+        <label for="Surname" class="form-label">Фамилия</label>
+        <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Введите фамилию">
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" placeholder="Введите адрес электронной почты">
+    </div>
+    <div class="mb-3">
+        <label for="Phone" class="form-label">Телефон</label>
+        <input type="tel" class="form-control" id="Phone" name="Phone" placeholder="Введите номер телефона">
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Пароль</label>
+        <input type="password" class="form-control" id="Password" name="Password" placeholder="Введите пароль">
+    </div>
+    <div class="mb-3">
+        <label for="PasswordRepeat" class="form-label">Повторите пароль</label>
+        <input type="password" class="form-control" id="PasswordRepeat" name="PasswordRepeat" placeholder="Введите пароль еще раз">
+    </div>
+    <input type="submit" class="btn enter__btn mb-3 col-8 offset-2" value="Зарегистрироваться" id="btnRegistration"/>
+    <div class="mt-3 col-10 container justify-content-center text-center">
+        <p class="ErrorMessage">@ViewBag.ErrorMessage</p>        
+    </div>
+</form>
+
+<script>
+    let btnRegistration = document.getElementById("btnRegistration");
+    btnRegistration.addEventListener('click', checkPassword);
+    function checkPassword() 
+    { 
+        let password = document.getElementById('Password');
+        let passwordRepeat = document.getElementById('PasswordRepeat');
+        if (password.value != passwordRepeat.value) 
+        {
+            event.preventDefault();
+            password.classList.add('uncorrectValue');
+            passwordRepeat.classList.add('uncorrectValue');
+        }
+    }
+</script>

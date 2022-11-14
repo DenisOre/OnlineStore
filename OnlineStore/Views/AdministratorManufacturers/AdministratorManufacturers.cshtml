@@ -1,0 +1,52 @@
+﻿@model OnlineStore.Models.ManufacturerViewModel
+@{
+    ViewData["Title"] = "Производители";
+}
+
+
+<form asp-action="AdministratorDeleteManufacturer" asp-controller="AdministratorManufacturers" method="post">
+<div class="mt-5">
+  <div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="btn btn-outline-success" href="/AdministratorManufacturers/AdministratorAddManufacturer">Добавить</a>
+      </li>
+      <li class="nav-item">
+        <input type="submit" class="btn btn-outline-danger ms-2" value="Удалить" />
+      </li>
+    </ul>
+   </div>
+    
+</div>
+<table class="table table-hover align-middle mt-4 adminProducts">
+  <thead class="align-middle adminProducts__header">
+    <tr>
+      <th class="adminProducts__header-col" scope="col">Id</th>
+      <th class="adminProducts__header-col" scope="col">Наименование</th>
+      <th class="adminProducts__header-col" scope="col">Редактировать</th>
+      <th class="adminProducts__header-col" scope="col">Удалить</th>
+    </tr>
+  </thead>
+  <tbody>
+      @for(int i=0; i<Model.manufacturerIsSelects.Count;i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x=>x.manufacturerIsSelects[i].Id)
+                    @Model.manufacturerIsSelects[i].Id
+                </td>
+                <td>
+                    @Html.HiddenFor(x=>x.manufacturerIsSelects[i].Name)
+                    @Model.manufacturerIsSelects[i].Name
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-action="AdministratorOpenEditManufacturer" asp-controller="AdministratorManufacturers" asp-route-Name="@Model.manufacturerIsSelects[i].Name">Изменить</a>
+                </td>
+                <td>
+                    @Html.CheckBoxFor(x=>x.manufacturerIsSelects[i].IsSelected)
+                </td>
+            </tr>
+        }
+  </tbody>
+</table>
+</form>

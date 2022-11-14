@@ -1,0 +1,39 @@
+﻿@model List<OnlineStore.Models.Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+   <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 catalog">
+        @for(int i = 0; i < Model.Count; i++)
+        {
+        <form asp-action="AddToBasket" asp-controller="Home" method="post" asp-route-id="@Model[i].Id">
+            <div class="col">
+                <div class="card catalog__product-card h-100">
+                    <a class="catalog__nav-product" asp-action="CardOfProduct" asp-controller="CardOfProduct" asp-route-id="@Model[i].Id">
+                        <img src="~/images/@Model[i].imagesProduct[0].Name" class="card-img-top catalog__product-image" alt="...">
+                        <div class="card-body container">
+                            <div style="height:75px"><h5 class="card-title catalog__name-product">@Model[i].Name</h5></div>
+                            <p class="card-text col-9 offset-5">
+                                @if (@Model[i].Price != @Model[i].PriceSale)
+                                {
+                                    <span class="catalog__old-price">@Model[i].Price р.</span>
+                                    <span class="catalog__sales-price">@Model[i].PriceSale р.</span>
+                                }
+                                else
+                                {
+                                    <span class="catalog__sales-price offset-3">@Model[i].PriceSale р.</span>
+                                }
+                            </p>
+                        </div>
+                    </a>
+                    <input type="submit" class="btn catalog__btn-inbasket col-8 mb-2 offset-2" value="В корзину" />
+                </div>
+            </div>
+            </form>
+        } 
+   </div>
+   
+
+
+  

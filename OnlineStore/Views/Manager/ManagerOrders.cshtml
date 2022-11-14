@@ -1,0 +1,138 @@
+﻿@model OnlineStore.Models.AccountViewModel
+@{
+     ViewData["Title"] = "Задачи менеджера";
+}
+
+
+<div class="mt-4">
+    <p class="h2 contacts__header">Заказы на комплектации</p>
+</div>
+<table class="table table-hover align-middle mt-4 basketTable">
+  <thead class="basketTable__header">
+    <tr>
+      <th class="col-2 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
+      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="col-1 basketTable__header-col" scope="col">Количество</th>
+      <th class="basketTable__header-col" scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+      @for(int i=0; i < @Model.inWorkOrders.Count; i++)
+      {
+            <tr>
+                <td colspan="4" class="h4 contacts__header">Клиент: @Model.inWorkOrders[i].User.Name (@Model.inWorkOrders[i].User.Phone) Заказ N @Model.inWorkOrders[i].Id от @Model.inWorkOrders[i].DateOrder</td>
+                <td>
+                  <form asp-action="ChangeOrderStatusToReady" asp-controller="Manager" method="post" asp-route-id="@Model.inWorkOrders[i].Id">
+                      <input type="submit" class="btn btn-outline-secondary" value="Перенести в готовые к выдаче" />
+                  </form>
+                </td>
+            </tr>
+            @for (int j = 0; j < @Model.inWorkOrders[i].products.Count; j++)
+            {
+                <tr>
+                  <td>
+                     @(j+1)
+                  </td>
+                  <td>@Model.inWorkOrders[i].products[j].Product.Name</td>
+                  <td>@Model.inWorkOrders[i].products[j].buyPrice р.</td>
+                  <td>@Model.inWorkOrders[i].products[j].Count</td>
+                  <td>@Model.inWorkOrders[i].products[j].buySum р.</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4" class="basketTable__footer-total">Сумма заказа:</td>
+                <td class="basketTable__footer-totalSum">@Model.inWorkOrders[i].SumOfOrder р.</td>
+            </tr>
+      }
+  </tbody>
+</table>
+<br />
+<br />
+<!-------------------->
+<div class="mt-4">
+    <p class="h2 contacts__header">Готовые к выдаче заказы</p>
+</div>
+<table class="table table-hover align-middle mt-4 basketTable">
+  <thead class="basketTable__header">
+    <tr>
+      <th class="col-2 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
+      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="col-1 basketTable__header-col" scope="col">Количество</th>
+      <th class="basketTable__header-col" scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+      @for(int i=0; i < @Model.readyOrders.Count; i++)
+      {
+            <tr>
+                <td colspan="4" class="h4 contacts__header">Клиент: @Model.readyOrders[i].User.Name (@Model.readyOrders[i].User.Phone) Заказ N @Model.readyOrders[i].Id от @Model.readyOrders[i].DateOrder</td>
+                <td>
+                  <form asp-action="ChangeOrderStatusToPaid" asp-controller="Manager" method="post" asp-route-id="@Model.readyOrders[i].Id">
+                      <input type="submit" class="btn btn-outline-secondary" value="Перенести в завершенные" />
+                  </form>
+                </td>
+            </tr>
+            @for (int j = 0; j < @Model.readyOrders[i].products.Count; j++)
+            {
+                <tr>
+                  <td>
+                     @(j+1)
+                  </td>
+                  <td>@Model.readyOrders[i].products[j].Product.Name</td>
+                  <td>@Model.readyOrders[i].products[j].buyPrice р.</td>
+                  <td>@Model.readyOrders[i].products[j].Count</td>
+                  <td>@Model.readyOrders[i].products[j].buySum р.</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4" class="basketTable__footer-total">Сумма заказа:</td>
+                <td class="basketTable__footer-totalSum">@Model.readyOrders[i].SumOfOrder р.</td>
+            </tr>
+      }
+  </tbody>
+</table>
+<br />
+<br />
+
+<!--------------------------------->
+
+<div class="mt-4">
+    <p class="h2 contacts__header">Завершенные заказы</p>
+</div>
+<table class="table table-hover align-middle mt-4 basketTable">
+  <thead class="basketTable__header">
+    <tr>
+      <th class="col-2 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
+      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="col-1 basketTable__header-col" scope="col">Количество</th>
+      <th class="basketTable__header-col" scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+      @for(int i=0; i < @Model.paidOrders.Count; i++)
+      {
+            <tr>
+                <td colspan="4" class="h4 contacts__header">@Model.paidOrders[i].User.Name (@Model.paidOrders[i].User.Phone) Заказ N @Model.paidOrders[i].Id от @Model.paidOrders[i].DateOrder</td>
+            </tr>
+            @for (int j = 0; j < @Model.paidOrders[i].products.Count; j++)
+            {
+                <tr>
+                  <td>
+                     @(j+1)
+                  </td>
+                  <td>@Model.paidOrders[i].products[j].Product.Name</td>
+                  <td>@Model.paidOrders[i].products[j].buyPrice р.</td>
+                  <td>@Model.paidOrders[i].products[j].Count</td>
+                  <td>@Model.paidOrders[i].products[j].buySum р.</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4" class="basketTable__footer-total">Сумма заказа:</td>
+                <td class="basketTable__footer-totalSum">@Model.paidOrders[i].SumOfOrder р.</td>
+            </tr>
+      }
+  </tbody>
+</table>

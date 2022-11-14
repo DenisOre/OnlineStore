@@ -1,0 +1,60 @@
+﻿
+@model OnlineStore.Models.Product
+@{
+    ViewData["Title"] = "Карточка товара";
+}
+
+<div class="container row mt-4 myCont">
+    <div id="carouselExampleIndicators" class="col-6 carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+          @for(int i = 0; i < Model.imagesProduct.Count; i++)
+            {
+                if (i == 0)
+                {
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="active causel__idicators" aria-current="true" aria-label="Slide @i+1"></button>
+                }
+                else
+                {
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="causel__idicators" aria-label="Slide @i+1"></button>
+                }
+            }
+      </div>
+      <div class="carousel-inner">
+          @for(int i = 0; i < Model.imagesProduct.Count; i++)
+          {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <img src="~/images/@Model.imagesProduct[i].Name" class="d-block w-100" alt="Изображение @Model.imagesProduct[i].Name">
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        <img src="~/images/@Model.imagesProduct[i].Name" class="d-block w-100" alt="Изображение @Model.imagesProduct[i].Name">
+                    </div>
+                }
+          }
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon carousel__prev-next" aria-hidden="true"></span>
+        <span class="visually-hidden">Предыдущий</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon carousel__prev-next" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующий</span>
+      </button>
+    </div>
+    <div class="col-4 m-2">
+        <p class="h2">@Model.Name</p>
+        <p class="h5">Цена:
+            <span class="catalog__old-price">@Model.Price р.</span>
+            <span class="h5">@Model.PriceSale р.</span>
+        </p>
+        <form asp-action="AddToBasket" asp-controller="Home" method="post" asp-route-id="@Model.Id">
+            <input type="submit" class="btn catalog__btn-inbasket"  value="В корзину" />
+        </form>
+    </div>
+    <p class="h4">О товаре</p>
+    <p>@Model.InfoAboutProduct</p>
+</div>

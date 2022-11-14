@@ -1,0 +1,41 @@
+﻿td {
+    text-align:center;
+}
+
+.basketTable__header {
+    background-color: #8364AD;
+    color: white;
+}
+.basketTable__header-col {
+    border: 2px solid white;
+    text-align:center;
+}
+
+.basketTable__footer-total {
+    text-align: end;
+    font-size: 150%;
+    font-weight: bold;
+    color: #8364AD;
+}
+
+.basketTable__footer-totalSum {
+    font-size: 150%;
+    font-weight: bold;
+    color: #8364AD;
+}
+
+.basketBtn {
+    font-size: 150%;
+    color: white !important;
+    background-color: #8364AD;
+    
+    font-weight: bold;
+    border: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #8364AD;
+}
+    .basketBtn:hover {
+        box-shadow: 0px 0px 15px #8364AD;
+    }
+    
