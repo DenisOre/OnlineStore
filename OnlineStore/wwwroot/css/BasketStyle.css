@@ -1,4 +1,168 @@
-﻿td {
+﻿@media (min-width: 992px) and (max-width: 1200px) {
+    .basketTable__header-col {
+        font-size: 1.4vw !important;
+    }    
+
+    .basket_count {
+        width: 0.1vw !important;
+        margin-left: 0 !important;
+    }
+
+    .btn_decrease, .btn_increase {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    .btn-delBuy {
+        width: 10vw;
+        height: 10vw;
+        white-space: pre-line;
+        font-size: 1.5vw !important;
+    }
+
+    .basket_money {
+        font-size: 1.5vw !important;
+    }
+
+    .btn_changeStatus {
+        width: 25vw;
+        height: 6vw;
+        white-space: pre-line;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .basketTable__header-col {
+        font-size: 1.8vw !important;
+    }
+
+    .basketTable__footer-totalSum {
+        font-size: 3vw !important;
+    }
+
+    .basket_count {
+        width: 0.1vw !important;
+        margin-left: 0 !important;
+    }
+
+    .btn_decrease, .btn_increase {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .btn-delBuy {
+        width: 12vw;
+        height: 12vw;
+        white-space: pre-line;
+        font-size: 1.7vw !important;
+    }
+
+    .basketBtn {
+        width: 17vw;
+        height: 8vw;
+        white-space: pre-line;
+        font-size: 2vw !important;
+    }
+
+    .basket_money {
+        font-size: 1.8vw !important;
+    }
+
+    .btn_changeStatus {
+        width: 25vw;
+        height: 8vw;
+        white-space: pre-line;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .basketTable__header-col {
+        font-size: 2.2vw !important;
+    }
+
+    .basketTable__footer-totalSum {
+        font-size: 3.4vw !important;
+    }
+
+    .basket_count {
+        width: 0.1vw !important;
+        margin-left: 0 !important;
+    }
+
+    .btn_decrease, .btn_increase {
+        width: 4.5vw;
+        height: 4.5vw;
+    }
+
+    .btn-delBuy {
+        width: 12vw;
+        height: 12vw;
+        white-space: pre-line;
+        font-size: 2vw !important;
+    }
+
+    .basketBtn {
+        width: 20vw;
+        height: 10vw;
+        white-space: pre-line;
+        font-size: 3vw !important;
+    }
+
+    .basket_money {
+        font-size: 2vw !important;
+    }
+
+    .btn_changeStatus {
+        width: 25vw;
+        height: 12vw;
+        white-space: pre-line;
+    }
+}
+
+@media(max-width: 576px){
+    .basketTable__header-col {
+        font-size: 3vw !important;
+    }
+
+    .basketTable__footer-totalSum {
+        font-size: 4vw !important;
+    }
+
+    .basket_count {
+        width: 0.1vw !important;
+        margin-left: 0 !important;
+    }
+
+    .btn_decrease, .btn_increase {
+        width: 6vw;
+        height: 6vw;
+    }
+
+    .btn-delBuy {
+        width: 15vw;
+        height: 15vw;
+        white-space: pre-line;
+    }
+
+    .basketBtn {
+        width: 27vw;
+        height: 15vw;
+        white-space: pre-line;
+    }
+
+    .basket_money {
+        font-size: 2.6vw !important;
+    }
+
+    .btn_changeStatus {
+        width: 25vw;
+        height: 15vw;
+        white-space: pre-line;
+    }
+}
+
+
+td {
     text-align:center;
 }
 
@@ -9,6 +173,7 @@
 .basketTable__header-col {
     border: 2px solid white;
     text-align:center;
+    vertical-align:middle;
 }
 
 .basketTable__footer-total {
@@ -22,6 +187,7 @@
     font-size: 150%;
     font-weight: bold;
     color: #8364AD;
+    text-align: left;
 }
 
 .basketBtn {
@@ -38,4 +204,7 @@
     .basketBtn:hover {
         box-shadow: 0px 0px 15px #8364AD;
     }
-    
+
+.basket_money {
+    font-size: 1.2vw;
+}

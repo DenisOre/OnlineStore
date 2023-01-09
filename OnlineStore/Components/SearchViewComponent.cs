@@ -7,17 +7,9 @@ namespace OnlineStore.Components
 {
     public class SearchViewComponent: ViewComponent
     {
-        ApplicationContext db;
-        public SearchViewComponent(ApplicationContext context)
-        {
-            this.db = context;
-        }
-
         public IViewComponentResult Invoke()
         {
             return View();
         }
-
-        
     }
 }

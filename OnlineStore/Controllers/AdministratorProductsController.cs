@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 
 
@@ -27,6 +26,10 @@ namespace OnlineStore.Controllers
                 productsIsSelect.Add(new ProductIsSelect(products[i]));
             }
             ProductViewModel productViewModel = new ProductViewModel { productIsSelects = productsIsSelect };
+            if (TempData["ErrDelMessage"] != null)
+            {
+                ViewBag.ErrMessage = TempData["ErrDelMessage"].ToString();
+            }
             return View(productViewModel);
         }
 
@@ -76,6 +79,19 @@ namespace OnlineStore.Controllers
                     product = await db.Products.FirstOrDefaultAsync(p => p.Id == item.Id);
                     if (product != null)
                     {
+                        List<Buy>? buys = await db.Buys.Include(p=>p.Product).ToListAsync();
+                        if (buys != null)
+                        {
+                            for (int i = 0; i < buys.Count; i++)
+                            {
+                                if (product.Name == buys[i].Product.Name)
+                                {
+                                    TempData["ErrDelMessage"] = "Ошибка удаления!!! Товар был в заказах!";
+                                    return RedirectToAction("AdministratorProducts");
+                                }
+                            }
+                        }
+                        
                         List<ImageProduct> imagesOfProductDelete = await db.ImageProducts.Where(im => im.ProductId == product.Id).ToListAsync();
                         foreach (var image in imagesOfProductDelete)
                         {

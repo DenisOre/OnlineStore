@@ -56,7 +56,7 @@ namespace OnlineStore.Controllers
         public async Task<IActionResult> DecreaseCountOfProduct(int? Id)
         {
             Buy? buy = await db.Buys.FirstOrDefaultAsync(b => b.Id == Id);
-            if (buy != null)
+            if (buy != null && buy.Count > 1)
             {
                 buy.Count--;
                 buy.CalcBuySum();

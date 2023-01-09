@@ -61,7 +61,7 @@
             <a class="nav-link header__name-store" asp-action="Index" asp-controller="Home">OnlineStore</a>
         </div>
 
-        <div>
+        <div class="mb-2">
             @if ((await AuthorizationService.AuthorizeAsync(User, "OnlyForAdmin")).Succeeded)
             {
                 <ul class="nav justify-content-end">
@@ -90,6 +90,7 @@
                         @await Component.InvokeAsync("Catalog")
                     </div>
                     <div class="col-6">
+                       @* <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">*@
                         @await Component.InvokeAsync("Search")
                     </div>
                 </div>

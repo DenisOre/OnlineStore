@@ -36,8 +36,7 @@
                     @Html.HiddenFor(x=>x.orderIsSelects[i].Id)
                     @Model.orderIsSelects[i].Id
                 </td>
-                <td>
-                    @Html.HiddenFor(x=>x.orderIsSelects[i].DateOrder)
+                <td>                   
                     @Model.orderIsSelects[i].DateOrder
                 </td>
                 <td>
@@ -50,28 +49,19 @@
                     <ol>
                         @for (int j = 0; j < Model.orderIsSelects[i].products.Count; j++)
                         {
-                            <li>
-                                @Html.HiddenFor(x=>x.orderIsSelects[i].products[j].Product.Name)
-                                @Model.orderIsSelects[i].products[j].Product?.Name<br />
-
-                                @Html.HiddenFor(x=>x.orderIsSelects[i].products[j].Count)
-                                @Model.orderIsSelects[i].products[j].Count шт х 
-                                
-                                @Html.HiddenFor(x=>x.orderIsSelects[i].products[j].buyPrice)
+                            <li>                                
+                                @Model.orderIsSelects[i].products[j].Product?.Name<br />                               
+                                @Model.orderIsSelects[i].products[j].Count шт х                                
                                 @Model.orderIsSelects[i].products[j].buyPrice р. = 
-                                
-                                @Html.HiddenFor(x=>x.orderIsSelects[i].products[j].buySum)
                                 @Model.orderIsSelects[i].products[j].buySum р.
                             </li>
                         }
                     </ol>
                 </td>
                 <td>
-                    @Html.HiddenFor(x=>x.orderIsSelects[i].SumOfOrder)
                     @Model.orderIsSelects[i].SumOfOrder
                 </td>
                 <td>
-                    @Html.HiddenFor(x=>x.orderIsSelects[i].isReady)
                     @if (Model.orderIsSelects[i].isReady == true)
                     {
                         <P>Готов к выдаче</P>
@@ -82,7 +72,6 @@
                     }
                 </td>
                 <td>
-                    @Html.HiddenFor(x=>x.orderIsSelects[i].isPaid)
                     @if (Model.orderIsSelects[i].isPaid == true)
                     {
                         <p>Оплачен</p>
@@ -96,6 +85,7 @@
                     <a class="btn btn-outline-secondary" asp-action="AdministratorOpenEditOrder" asp-controller="AdministratorOrders" asp-route-id="@Model.orderIsSelects[i].Id">Изменить</a>
                 </td>
                 <td>
+
                     @Html.CheckBoxFor(x=>x.orderIsSelects[i].IsSelect)
                 </td>
             </tr>

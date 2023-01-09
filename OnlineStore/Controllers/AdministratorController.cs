@@ -10,13 +10,6 @@ namespace OnlineStore.Controllers
     [Authorize(Policy = "OnlyForAdmin")]
     public class AdministratorController: Controller
     {
-        ApplicationContext db;
-        public AdministratorController(ApplicationContext context)
-        {
-            this.db = context;
-            ViewBag.categories = db.Categories.ToList();
-        }
-        
         public IActionResult AdministratorMain()
         {
             return View();

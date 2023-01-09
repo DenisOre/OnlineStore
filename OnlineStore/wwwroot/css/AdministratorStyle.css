@@ -1,15 +1,41 @@
-﻿.adminMain {
-    height: 200px;
-   
+﻿@media (min-width: 992px) and (max-width: 1199px) {
+    .adminMain__section {
+        margin-top: 2vw;
+        font-size: 2vw !important;
+    }
 }
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .adminMain__section {
+        margin-top: 2vw;
+        font-size: 2.6vw !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .adminMain__section {
+        margin-top: 2vw;
+        font-size: 3.2vw !important;
+    }
+}
+
+@media (max-width: 576px){
+    .adminMain__section {
+        margin-top: 2vw;
+        font-size: 4vw !important;
+    }
+}
+
+
 .adminMain__section {
-    font-size:140%;
+    font-size: 1.3vw;
     color: #8364AD;
     font-weight: bold;
     text-align: center;
     border: 2px solid #8364AD;
     border-radius: 10px;
     padding-top:40%;
+    padding-bottom: 40%;
 }
 
     .adminMain__section:hover {

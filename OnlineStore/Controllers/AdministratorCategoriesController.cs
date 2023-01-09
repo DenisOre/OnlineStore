@@ -47,6 +47,7 @@ namespace OnlineStore.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("AdministratorCategories");
         }
+
         [HttpPost]
         public async Task<IActionResult> AdministratorDeleteCategories(CategoryViewModel selectedCategoies)
         {

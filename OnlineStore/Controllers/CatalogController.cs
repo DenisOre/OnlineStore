@@ -16,8 +16,8 @@ namespace OnlineStore.Controllers
         public async Task<IActionResult> CatalogSelectCategory(int Id)
         {
             List<Product> products = await db.Products.Include(p => p.imagesProduct).Where(p => p.Category.Id == Id).ToListAsync();
-            return View("~/Views/Home/Index.cshtml",products);
+            return View("~/Views/Home/Index.cshtml", products);
         }
-       
+
     }
 }

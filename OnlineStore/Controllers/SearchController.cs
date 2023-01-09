@@ -18,6 +18,10 @@ namespace OnlineStore.Controllers
         {
             string search = searchText.Trim();
             List<Product> products = await db.Products.Include(p => p.imagesProduct).Where(p => p.Name == search).ToListAsync();
+            if (products.Count != 0)
+            {
+                return View("~/Views/Home/Index.cshtml", products);
+            }
 
             string[] searchArray = search.Split(new char[] { ' ' },StringSplitOptions.RemoveEmptyEntries);
 
@@ -26,31 +30,23 @@ namespace OnlineStore.Controllers
             {
                 productsByTwoWordsCategoryAndManufacturer = await db.Products.Include(p => p.imagesProduct).Where(p => p.Category.Name.Substring(0, p.Category.Name.Length - 1) == searchArray[0] && p.Manufacturer.Name == searchArray[1]).ToListAsync();
             }
-            List<Product> productsByFirstWordCategory = await db.Products.Include(p=>p.imagesProduct).Where(p=>p.Category.Name.Substring(0, p.Category.Name.Length-1) == searchArray[0]).ToListAsync();
-            List<Product> productsByFirstWordManufacturer = await db.Products.Include(p => p.imagesProduct).Where(p => p.Manufacturer.Name == searchArray[0]).ToListAsync();
-
-            if (products.Count != 0)
-            {
-                return View("~/Views/Home/Index.cshtml", products);
-            }
-            else if (productsByTwoWordsCategoryAndManufacturer.Count != 0)
+            if (productsByTwoWordsCategoryAndManufacturer.Count != 0)
             {
                 return View("~/Views/Home/Index.cshtml", productsByTwoWordsCategoryAndManufacturer);
             }
-            else if (productsByFirstWordCategory.Count != 0)
+            List<Product> productsByFirstWordCategory = await db.Products.Include(p=>p.imagesProduct).Where(p=>p.Category.Name.Substring(0, p.Category.Name.Length-1) == searchArray[0]).ToListAsync();
+            if (productsByFirstWordCategory.Count != 0)
             {
                 return View("~/Views/Home/Index.cshtml", productsByFirstWordCategory);
             }
-            else if (productsByFirstWordManufacturer.Count != 0)
+            List<Product> productsByFirstWordManufacturer = await db.Products.Include(p => p.imagesProduct).Where(p => p.Manufacturer.Name == searchArray[0]).ToListAsync();
+            if (productsByFirstWordManufacturer.Count != 0)
             {
                 return View("~/Views/Home/Index.cshtml", productsByFirstWordManufacturer);
             }
-            else
-            {
-                string message = "По вашему запросу ничего не найдено.";
-                return View("~/Views/Home/SearchNullResult.cshtml", message);
-            }
-            
+
+            string message = "По вашему запросу ничего не найдено.";
+            return View("~/Views/Home/SearchNullResult.cshtml", message);
         }
     }
 }

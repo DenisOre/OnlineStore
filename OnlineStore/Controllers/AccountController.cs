@@ -46,13 +46,8 @@ namespace OnlineStore.Controllers
                     {
                         item.products = getBuysOfOrder(item.Id);
                     }
-                }
-                
-                if (accountViewModel.readyOrders != null && accountViewModel.inWorkOrders != null)
-                {
-                    return View(accountViewModel);
-                }
-                
+                }               
+                return View(accountViewModel);
             }
             return RedirectToAction("Index", "Home");
         }

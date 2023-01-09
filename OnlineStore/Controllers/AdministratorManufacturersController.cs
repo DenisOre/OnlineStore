@@ -70,7 +70,6 @@ namespace OnlineStore.Controllers
         public async Task<IActionResult> AdministratorOpenEditManufacturer(string Name)
         {
             Manufacturer? manufacturer = await db.Manufacturers.FirstOrDefaultAsync(m => m.Name == Name);
-            ViewBag.ErrorName = "";
             return View("AdministratorEditManufacturer",manufacturer);
         }
 

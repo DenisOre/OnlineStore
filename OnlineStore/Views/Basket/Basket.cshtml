@@ -8,11 +8,11 @@
 <table class="table table-hover align-middle mt-4 basketTable">
   <thead class="basketTable__header">
     <tr>
-      <th class="col-1 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-1 basketTable__header-col" scope="col">№</th>
       <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
       <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
-      <th class="col-2 basketTable__header-col" scope="col">Количество</th>
-      <th class="basketTable__header-col" scope="col">Сумма</th>
+      <th class="col-2 basketTable__header-col" scope="col">Кол-во</th>
+      <th class="col-2 basketTable__header-col" scope="col">Сумма</th>
       <th class="basketTable__header-col" scope="col"></th>
     </tr>
   </thead>
@@ -24,30 +24,31 @@
                     @(i+1)
                 </td>
                 <td>@Model.products[i].Product.Name</td>
-                <td>@Model.products[i].buyPrice р.</td>
+                <td class="basket_money">@Model.products[i].buyPrice р.</td>
               <td>
                   <div class="container">
                       <div class="row">
-                          <div class="col ">
-                              <form asp-controller="Basket" asp-action="DecreaseCountOfProduct" asp-route-id="@Model.products[i].Id" method="post" >
-                                   <input type="submit" min="0" value="-" class="btn btn-sm btn-danger" />
+                          <div class="col-12">
+                              <form asp-controller="Basket" asp-action="IncreaseCountOfProduct" asp-route-id="@Model.products[i].Id" method="post" >
+                                   <input type="submit" min="1" value="+" class="btn btn btn-sm btn-success btn_increase" />
                               </form>
                           </div>
-                          <div class="col-1 align-self-center">
+                          <div class="col-12">
                               @Model.products[i].Count
                           </div>
-                          <div class="col ">
-                              <form asp-controller="Basket" asp-action="IncreaseCountOfProduct" asp-route-id="@Model.products[i].Id" method="post" >
-                                   <input type="submit" min="0" value="+" class="btn btn btn-sm btn-success" />
+                          <div class="col-12 btn_div_decrease">
+                              <form asp-controller="Basket" asp-action="DecreaseCountOfProduct" asp-route-id="@Model.products[i].Id" method="post" >
+                                   <input type="submit" min="1" value="-" class="btn btn-sm btn-danger btn_decrease" />
                               </form>
                           </div>
+                          
                       </div>
                   </div>
               </td> 
-              <td>@Model.products[i].buySum р.</td>
+              <td class="basket_money">@Model.products[i].buySum р.</td>
               <td>
                   <form asp-action="DeleteBuyFromOrder" asp-controller="Basket" method="post" asp-route-id="@Model.products[i].Id">
-                      <input type="submit" class="btn btn-outline-secondary" value="Удалить из корзины" />
+                      <input type="submit" class="btn btn-outline-secondary btn-delBuy" value="Удалить из корзины" />
                   </form>
                   
               </td>
@@ -57,11 +58,11 @@
   <tfoot>
       <tr>
           <td colspan="4" class="basketTable__footer-total">Сумма заказа:</td>
-          <td class="basketTable__footer-totalSum">@Model.SumOfOrder р.</td>
+          <td colspan="2" class="basketTable__footer-totalSum">@Model.SumOfOrder р.</td>
       </tr>
   </tfoot>
 </table>
 <form asp-action="RegisterOrder" asp-controller="Basket" method="post" asp-route-id="@Model.Id" >
-    <input type="submit" class="offset-9 basketBtn" value="Оформить заказ" />
+    <input type="submit" class="offset-8 basketBtn" value="Оформить заказ" />
 </form>
 

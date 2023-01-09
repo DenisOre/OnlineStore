@@ -1,25 +1,122 @@
+@media (min-width: 992px) and (max-width: 1200px) {
+    html {
+        font-size: 1.6vw !important;
+    }
+
+    .header__name-store {
+        font-size: 5vw !important;
+    }
+
+    .header__btn-dropdown {
+        width: 17vw !important;
+    }
+
+    .header__btn-search {
+        width: 10vw !important;
+    }
+
+    .input-group {
+        width: 65vw !important;
+    }
+
+    .map_frame {
+        width: 90vw !important;
+        height: 90vw !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    html {
+        font-size: 2vw !important;
+    }
+
+    .header__name-store {
+        font-size: 6vw !important;
+    }
+
+    .header__btn-dropdown {
+        width: 17vw !important;
+    }
+
+    .header__btn-search {
+        width: 10vw !important;
+    }
+
+    .input-group {
+        width: 65vw !important;
+    }
+
+    .map_frame {
+        width: 90vw !important;
+        height: 90vw !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    html {
+        font-size: 2.5vw !important;
+    }
+
+    .header__name-store {
+        font-size: 7vw !important;
+    }
+
+    .header__btn-dropdown {
+        width: 17vw !important;
+    }
+
+    .header__btn-search {
+        width: 10vw !important;
+    }   
+
+    .input-group {
+        width: 65vw !important;
+    }
+
+    .map_frame {
+        width: 90vw !important;
+        height: 90vw !important;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 3vw !important;
+    }
+
+    .header__name-store {
+        font-size: 8vw !important;
+    }
+
+    .header__btn-dropdown {
+        width: 17vw !important;
+    }
+
+    .header__btn-search {
+        width: 15vw !important;
+    }    
+
+    .input-group {
+        width: 70vw !important;
+    }
+
+    .map_frame {
+        width: 90vw !important;
+        height: 90vw !important;
+    }
+}
+
+
+
 html {
-    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    font-size: 1.2vw;
 }
 
 body {
-     background: url(../images/main10.jpg);
-    /*background: linear-gradient(to top left, #cfaefc, #f3f1f6);*/
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+    background: url(../images/main10.jpg);
+    margin-bottom: 60px;
 }
 
 .header__nav-item {
@@ -41,7 +138,7 @@ body {
 .header__name-store {
     color: #8364AD !important;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 2vw;
 }
 
 .header__btn-dropdown {
@@ -89,4 +186,14 @@ body {
 .ErrorMessage {
     color:#ffd800;
     font-weight:bold;
+}
+
+.ErrMessage {
+    color: red;
+    font-weight: bold;
+}
+
+.map_frame {
+    width: 50vw;
+    height: 30vw;
 }

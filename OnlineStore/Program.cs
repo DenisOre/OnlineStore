@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
 using OnlineStore.Models;
 
 

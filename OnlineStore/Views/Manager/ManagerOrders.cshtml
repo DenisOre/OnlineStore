@@ -10,10 +10,10 @@
 <table class="table table-hover align-middle mt-4 basketTable">
   <thead class="basketTable__header">
     <tr>
-      <th class="col-2 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-1 basketTable__header-col" scope="col">№</th>
       <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
-      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
-      <th class="col-1 basketTable__header-col" scope="col">Количество</th>
+      <th class="col-3 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="col-1 basketTable__header-col" scope="col">Кол-во</th>
       <th class="basketTable__header-col" scope="col">Сумма</th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
                 <td colspan="4" class="h4 contacts__header">Клиент: @Model.inWorkOrders[i].User.Name (@Model.inWorkOrders[i].User.Phone) Заказ N @Model.inWorkOrders[i].Id от @Model.inWorkOrders[i].DateOrder</td>
                 <td>
                   <form asp-action="ChangeOrderStatusToReady" asp-controller="Manager" method="post" asp-route-id="@Model.inWorkOrders[i].Id">
-                      <input type="submit" class="btn btn-outline-secondary" value="Перенести в готовые к выдаче" />
+                      <input type="submit" class="btn btn-outline-secondary btn_changeStatus" value="Перенести в готовые к выдаче" />
                   </form>
                 </td>
             </tr>
@@ -56,10 +56,10 @@
 <table class="table table-hover align-middle mt-4 basketTable">
   <thead class="basketTable__header">
     <tr>
-      <th class="col-2 basketTable__header-col" scope="col">N п/п</th>
+      <th class="col-1 basketTable__header-col" scope="col">№</th>
       <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
-      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
-      <th class="col-1 basketTable__header-col" scope="col">Количество</th>
+      <th class="col-3 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="col-1 basketTable__header-col" scope="col">Кол-во</th>
       <th class="basketTable__header-col" scope="col">Сумма</th>
     </tr>
   </thead>
@@ -70,7 +70,7 @@
                 <td colspan="4" class="h4 contacts__header">Клиент: @Model.readyOrders[i].User.Name (@Model.readyOrders[i].User.Phone) Заказ N @Model.readyOrders[i].Id от @Model.readyOrders[i].DateOrder</td>
                 <td>
                   <form asp-action="ChangeOrderStatusToPaid" asp-controller="Manager" method="post" asp-route-id="@Model.readyOrders[i].Id">
-                      <input type="submit" class="btn btn-outline-secondary" value="Перенести в завершенные" />
+                      <input type="submit" class="btn btn-outline-secondary btn_changeStatus" value="Перенести в завершенные" />
                   </form>
                 </td>
             </tr>
@@ -104,11 +104,11 @@
 <table class="table table-hover align-middle mt-4 basketTable">
   <thead class="basketTable__header">
     <tr>
-      <th class="col-2 basketTable__header-col" scope="col">N п/п</th>
+      <th class="basketTable__header-col" scope="col">№</th>
       <th class="col-4 basketTable__header-col" scope="col">Название товара</th>
-      <th class="col-2 basketTable__header-col" scope="col">Цена за шт.</th>
-      <th class="col-1 basketTable__header-col" scope="col">Количество</th>
-      <th class="basketTable__header-col" scope="col">Сумма</th>
+      <th class="col-3 basketTable__header-col" scope="col">Цена за шт.</th>
+      <th class="basketTable__header-col" scope="col">Кол-во</th>
+      <th class="col-3 basketTable__header-col" scope="col">Сумма</th>
     </tr>
   </thead>
   <tbody>

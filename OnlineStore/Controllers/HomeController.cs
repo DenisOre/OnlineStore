@@ -2,9 +2,7 @@
 using OnlineStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Identity;
+
 
 namespace OnlineStore.Controllers
 {
@@ -35,7 +33,7 @@ namespace OnlineStore.Controllers
                 buy.Product = product;
                 buy.Count = 1;
                 buy.buyPrice = product.PriceSale;
-                buy.buySum = buy.Count * buy.buyPrice;
+                buy.CalcBuySum();
 
                 User? user = await db.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
 
@@ -50,7 +48,7 @@ namespace OnlineStore.Controllers
                         if (checkBuy != null)
                         {
                             checkBuy.Count++;
-                            checkBuy.buySum = (buy.Count+1) * buy.buyPrice;
+                            checkBuy.CalcBuySum();
                             db.Buys.Update(checkBuy);
                             await db.SaveChangesAsync();
                         }
